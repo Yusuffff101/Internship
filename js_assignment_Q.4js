@@ -1,25 +1,22 @@
-function unflatten(flatObject) {
-    let result = {};
 
-    for (let key in flatObject) {
-        if (flatObject.hasOwnProperty(key)) {
-            let keys = key.split('.');
-            let current = result;
+function secondLargest(array) {
+    if (array.length < 2) {
+        return null; 
+    }
 
-            for (let i = 0; i < keys.length; i++) {
-                let subKey = keys[i];
-
-                if (i === keys.length - 1) {
-                    current[subKey] = flatObject[key];
-                } else {
-                    if (!current[subKey]) {
-                        current[subKey] = {};
-                    }
-                    current = current[subKey];
-                }
-            }
+    let first = -Infinity; 
+    let second = -Infinity; 
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > first) {
+            first = array[i];
+        }
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > second && array[i] < first) {
+            second = array[i];
         }
     }
 
-    return result;
+    return second === -Infinity ? null : second;
 }
+
